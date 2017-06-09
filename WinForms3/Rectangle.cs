@@ -16,7 +16,6 @@ namespace WinForms3
     {
         GraphicsPath wantedshape = new GraphicsPath();
         Color[] colors = { Color.Gold, Color.Coral, Color.Turquoise, Color.Crimson , Color.PowderBlue, Color.Indigo, Color.DarkCyan};
-        int velocity;
         private readonly Random r = new Random();
         int click_counter = 0;
         int changex, changey;
@@ -29,8 +28,10 @@ namespace WinForms3
 
         private void Rectangle_Load(object sender, EventArgs e)
         {
-            //GraphicsPath wantedshape = new GraphicsPath();
-            wantedshape.AddEllipse(0, 0, this.Width, this.Width);
+            int wid = r.Next(100, 150);
+            this.Width = wid;
+            this.Height = wid;
+            wantedshape.AddEllipse(0, 0, this.Width, this.Width);            
             this.Region = new Region(wantedshape);
 
             Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width-this.Width), r.Next(0, Screen.PrimaryScreen.Bounds.Height-this.Height));
@@ -38,13 +39,12 @@ namespace WinForms3
             BackColor = colors[r.Next(0, 7)];
             changey = r.Next(-20, 20);
             Thread.Sleep(10);
-            velocity = r.Next(30,40);
             changex = r.Next(-20, 20);
             
-            timer1.Interval = velocity;
+            timer1.Interval = r.Next(30, 40);
             timer1.Start();
 
-            timer2.Interval = 20;
+            timer2.Interval = r.Next(60,80);
             timer2.Start();
         }
 
@@ -69,11 +69,13 @@ namespace WinForms3
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            //if ((this.Width >= this.MaximumSize.Width) || (this.Width <= this.MaximumSize.Width)) changes *= -1;
-            //this.Width += changes;
-            //this.Height += changes;
-            //wantedshape.AddEllipse(0, 0, this.Width, this.Width);
-            //this.Region = new Region(wantedshape);
+            if ((this.Width >= this.MaximumSize.Width) || (this.Width <= this.MinimumSize.Width)) changes *= -1;
+            this.Width += changes;
+            this.Height += changes;
+
+            wantedshape.Reset();
+            wantedshape.AddEllipse(0, 0, this.Width, this.Width);
+            this.Region = new Region(wantedshape);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
