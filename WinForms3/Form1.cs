@@ -12,14 +12,14 @@ namespace WinForms3
 {
     public partial class Form1 : Form
     {
-        List<Form> recs = new List<Form>(20);
+        public static List<Form> recs = new List<Form>(20);
         public Form1()
         {
             InitializeComponent();
             Opacity = 0;
             for(int i=0;i<20;i++)
             {
-                Form f = new Rect();
+                Form f = new Rect(i);
                 recs.Add(f);
                 f.Show();
             }
@@ -27,7 +27,6 @@ namespace WinForms3
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -37,7 +36,7 @@ namespace WinForms3
         }
         public bool CloseCancel()
         {
-            if ((recs.Count - 1 >= 0))
+            if ((recs.Count > 1))
             {
                 recs[recs.Count - 1].Close();
                 recs.RemoveAt(recs.Count - 1);

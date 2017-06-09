@@ -50,6 +50,7 @@
             this.MaximumSize = new System.Drawing.Size(400, 400);
             this.MinimumSize = new System.Drawing.Size(70, 70);
             this.Name = "Rect";
+            this.ShowInTaskbar = false;
             this.Text = "Rectangle";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Rectangle_Load);

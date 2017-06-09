@@ -17,13 +17,14 @@ namespace WinForms3
         GraphicsPath wantedshape = new GraphicsPath();
         Color[] colors = { Color.Gold, Color.Coral, Color.Turquoise, Color.Crimson , Color.PowderBlue, Color.Indigo, Color.DarkCyan};
         private readonly Random r = new Random();
-        int click_counter = 0;
+        int click_counter = 0, i;
         int changex, changey;
         int changes = 10;
 
-        public Rect()
+        public Rect(int n)
         {
             InitializeComponent();
+            i = n;
         }
 
         private void Rectangle_Load(object sender, EventArgs e)
@@ -59,10 +60,16 @@ namespace WinForms3
             else if (click_counter == 2)
             {
                 timer1.Stop();
+                timer2.Stop();
             }
             else
             {
-                this.Close();
+                try
+                {
+                    Form1.recs.RemoveAt(i - 1);
+                    this.Close();
+                }
+                catch (ArgumentOutOfRangeException) { this.Close(); }
             }
 
         }
