@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinForms3
@@ -17,14 +11,15 @@ namespace WinForms3
         GraphicsPath wantedshape = new GraphicsPath();
         Color[] colors = { Color.Gold, Color.Coral, Color.Turquoise, Color.Crimson , Color.PowderBlue, Color.Indigo, Color.DarkCyan};
         private readonly Random r = new Random();
-        int click_counter = 0, i;
+        int click_counter = 0;
         int changex, changey;
         int changes = 10;
+        Form par;
 
-        public Rect(int n)
+        public Rect(Form p)
         {
             InitializeComponent();
-            i = n;
+            par = p;
         }
 
         private void Rectangle_Load(object sender, EventArgs e)
@@ -64,12 +59,10 @@ namespace WinForms3
             }
             else
             {
-                try
-                {
-                    Form1.recs.RemoveAt(i - 1);
-                    this.Close();
-                }
-                catch (ArgumentOutOfRangeException) { this.Close(); }
+                int i = Form1.recs.IndexOf(this);
+                Form1.recs.RemoveAt(i);
+                if (Form1.recs.Count == 0) par.Close();
+                this.Close();
             }
 
         }

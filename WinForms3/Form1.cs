@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinForms3
@@ -19,7 +13,7 @@ namespace WinForms3
             Opacity = 0;
             for(int i=0;i<20;i++)
             {
-                Form f = new Rect(i);
+                Form f = new Rect(this);
                 recs.Add(f);
                 f.Show();
             }
