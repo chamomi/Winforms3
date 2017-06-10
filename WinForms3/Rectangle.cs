@@ -24,7 +24,7 @@ namespace WinForms3
 
         private void Rectangle_Load(object sender, EventArgs e)
         {
-            int wid = r.Next(100, 150);
+            int wid = r.Next(80, 250);
             this.Width = wid;
             this.Height = wid;
             wantedshape.AddEllipse(0, 0, this.Width, this.Width);            

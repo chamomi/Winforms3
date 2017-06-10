@@ -6,12 +6,13 @@ namespace WinForms3
 {
     public partial class Form1 : Form
     {
-        public static List<Form> recs = new List<Form>(20);
+        public static int n = 20; //numbers of floating circles
+        public static List<Form> recs = new List<Form>(n);
         public Form1()
         {
             InitializeComponent();
             Opacity = 0;
-            for(int i=0;i<20;i++)
+            for(int i=0;i<n;i++)
             {
                 Form f = new Rect(this);
                 recs.Add(f);
